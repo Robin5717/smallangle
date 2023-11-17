@@ -24,7 +24,7 @@ def sin(number):
     x = np.linspace(0, 2 * pi, number)
     df = pd.DataFrame({"x": x, "sin (x)": np.sin(x)})
     print(df)
-    return
+    return 
 
 
 
@@ -45,6 +45,32 @@ def tan(number):
     x = np.linspace(0, 2 * pi, number)
     df = pd.DataFrame({"x": x, "tan (x)": np.tan(x)})
     print(df)
+    return
+
+
+@cmd_group.command()
+@click.option(
+    "-e",
+    "--epsilon",
+    default=0.1,
+    help="accuracy for which the smallest angle approximation holds",
+    show_default=True
+)
+def approx(epsilon):
+    """for the given accuracy calculates the largest angle for which the small angle approx for sin holds
+
+    Args:
+        epsilon (float): desired accuracy
+    """    
+    grootste = False
+    x = 0
+    while grootste == False and x != 2*pi:
+        if abs(x-np.sin(x)) > epsilon:
+            grootste = True
+            xmax = x
+        x += 0.001
+    print(f"For an accuracy of {epsilon}, the small-angle approximation holds up to x = {round(xmax, 3)}")
+        
     return
 
 
