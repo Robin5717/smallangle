@@ -8,7 +8,13 @@ def cmd_group():
     pass
 
 @cmd_group.command()
-@click.argument("number")
+@click.option(
+    "-n",
+    "--number",
+    default=10,
+    help="Number of steps between 0 and 2*pi",
+    show_default=True # show default in help
+)
 def sin(number):
     x = np.linspace(0, 2 * pi, number)
     df = pd.DataFrame({"x": x, "sin (x)": np.sin(x)})
@@ -18,7 +24,13 @@ def sin(number):
 
 
 @cmd_group.command()
-@click.argument("number")
+@click.option(
+    "-n",
+    "--number",
+    default=10,
+    help="Number of steps between 0 and 2*pi"
+    show_default=True
+)
 def tan(number):
     x = np.linspace(0, 2 * pi, number)
     df = pd.DataFrame({"x": x, "tan (x)": np.tan(x)})
