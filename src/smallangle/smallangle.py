@@ -67,9 +67,9 @@ def approx(epsilon):
     while grootste == False and x != 2*pi:
         if abs(x-np.sin(x)) > epsilon:
             grootste = True
-            xmax = x
-        x += 0.001
-    print(f"For an accuracy of {epsilon}, the small-angle approximation holds up to x = {round(xmax, 3)}")
+        else:
+            x += 0.001
+    print(f"For an accuracy of {epsilon}, the small-angle approximation holds up to x = {round(x,3)}")
         
     return
 
